@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223003854) do
+ActiveRecord::Schema.define(version: 20180223220923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,27 +18,24 @@ ActiveRecord::Schema.define(version: 20180223003854) do
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
     t.string "tier", null: false
-    t.float "annualPayment", null: false
-    t.date "startDate", null: false
-    t.date "endDate"
-    t.date "latestBillingDate"
-    t.float "outstandingBalance", null: false
-    t.integer "billingCyclesSincePayment", null: false
+    t.float "annual_payment", null: false
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.date "latest_billing_date"
+    t.float "outstanding_balance", null: false
+    t.integer "billing_cycles_since_payment", null: false
     t.string "email", null: false
     t.string "address", null: false
-    t.integer "monthlyApiLimit", null: false
-    t.float "overageUnitCost", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "monthly_api_limit", null: false
+    t.float "overage_unit_cost", null: false
   end
 
   create_table "usage_entries", force: :cascade do |t|
-    t.date "startDate", null: false
-    t.date "endDate", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.integer "usage", null: false
     t.integer "customer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_usage_entries_on_customer_id"
   end
 
 end

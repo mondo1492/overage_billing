@@ -1,4 +1,5 @@
 class Api::CustomersController < ApplicationController
+
   def new
     @customer = Customer.new
   end
@@ -26,16 +27,28 @@ class Api::CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.all.includes(:usage_entries)
+    # @customers = Customer.includes(:usage_entries).all
+    # chose to do below to avoid getting all customers, even those who dont' have overage
+    sql = "
+    SELECT * FROM customers as c
+    WHERE c.monthly_api_limit < (
+          SELECT usage FROM usage_entries as u
+          JOIN customers ON customers.id = customer_id
+          WHERE customer_id = customers.id
+          ORDER BY u.id DESC
+          LIMIT 1
+        )
+    "
+    @customers = Customer.includes(:usage_entries).find_by_sql(sql)
   end
 
   private
 
   def customer_params
     params.require(:customer).permit(
-      :name, :tier, :annualPayment, :startDate, :endDate, :latestBillingDate,
-      :outstandingBalance, :billingCyclesSincePayment, :email, :address,
-      :monthlyApiLimit, :overageUnitCost
+      :name, :tier, :annual_payment, :start_date, :end_date, :latest_billing_date,
+      :outstanding_balance, :billing_cycles_since_payment, :email, :address,
+      :monthly_api_limit, :overage_unit_cost
     )
   end
 end

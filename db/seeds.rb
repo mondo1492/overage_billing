@@ -10,36 +10,36 @@ Customer.destroy_all
 customers = [
   { name: "Company 1",
     tier: "Business",
-    annualPayment: 100000,
-    startDate: "2000-01-01",
-    outstandingBalance: 0,
-    billingCyclesSincePayment: 0,
+    annual_payment: 100000,
+    start_date: "2000-01-01",
+    outstanding_balance: 0,
+    billing_cycles_since_payment: 0,
     email: "email",
     address: "123 Way",
-    monthlyApiLimit: 5000,
-    overageUnitCost: 0.01
+    monthly_api_limit: 5000,
+    overage_unit_cost: 0.01
   },
   { name: "Company 2",
     tier: "Business",
-    annualPayment: 100000,
-    startDate: "2000-01-01",
-    outstandingBalance: 0,
-    billingCyclesSincePayment: 0,
+    annual_payment: 100000,
+    start_date: "2000-01-01",
+    outstanding_balance: 0,
+    billing_cycles_since_payment: 0,
     email: "email",
     address: "123 Way",
-    monthlyApiLimit: 6000,
-    overageUnitCost: 0.01
+    monthly_api_limit: 6000,
+    overage_unit_cost: 0.01
   },
   { name: "Company 3",
     tier: "Business",
-    annualPayment: 100000,
-    startDate: "2000-01-01",
-    outstandingBalance: 0,
-    billingCyclesSincePayment: 0,
+    annual_payment: 100000,
+    start_date: "2000-01-01",
+    outstanding_balance: 0,
+    billing_cycles_since_payment: 0,
     email: "email",
     address: "123 Way",
-    monthlyApiLimit: 7000,
-    overageUnitCost: 0.01
+    monthly_api_limit: 7000,
+    overage_unit_cost: 0.01
   }
 ]
 customerIds = []
@@ -51,18 +51,18 @@ end
 
 usageEntries1 = [
   {
-    startDate: "2000-01-01",
-    endDate: "2000-02-01",
+    start_date: "2000-01-01",
+    end_date: "2000-02-01",
     usage: 2000
   },
   {
-    startDate: "2000-02-01",
-    endDate: "2000-03-01",
+    start_date: "2000-02-01",
+    end_date: "2000-03-01",
     usage: 4000
   },
   {
-    startDate: "2000-03-01",
-    endDate: "2000-04-01",
+    start_date: "2000-03-01",
+    end_date: "2000-04-01",
     usage: 6000
   },
   ]

@@ -22,6 +22,8 @@ class NewOverages extends React.Component {
           <li key={`customer-${i}`}>
             <h5> {customer ? customer.name : ""}</h5>
             <h5> {customer ? customer.overTF : ""}</h5>
+            <h5> {customer ? customer.overAmt : ""}</h5>
+            <h5> {customer ? customer.overCost : ""}</h5>
           </li>
         ))}
       </ul>
