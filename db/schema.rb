@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222211359) do
+ActiveRecord::Schema.define(version: 20180223003854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20180222211359) do
     t.string "address", null: false
     t.integer "monthlyApiLimit", null: false
     t.float "overageUnitCost", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usage_entries", force: :cascade do |t|
+    t.date "startDate", null: false
+    t.date "endDate", null: false
+    t.integer "usage", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

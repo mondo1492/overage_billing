@@ -1,0 +1,13 @@
+.finance-nav-container {
+
+  width: 100%;
+  border: 1px solid black;
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    li {
+      padding: 0px 15px;
+    }
+  }
+}

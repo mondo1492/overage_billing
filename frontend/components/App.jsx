@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import Front from './front';
-import NewOveragesContainer from './Finance/New/new_overages_container';
+import FinanceContainer from './Finance/navigation';
 
 const App = () => (
   <div>
     <Front></Front>
-    <Route exact path="/" component={ NewOveragesContainer } />
+    <Route exact path="/" component={ FinanceContainer } />
 
   </div>
 );

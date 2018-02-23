@@ -16,7 +16,7 @@ customers = [
     billingCyclesSincePayment: 0,
     email: "email",
     address: "123 Way",
-    monthlyApiLimit: 100,
+    monthlyApiLimit: 5000,
     overageUnitCost: 0.01
   },
   { name: "Company 2",
@@ -27,7 +27,7 @@ customers = [
     billingCyclesSincePayment: 0,
     email: "email",
     address: "123 Way",
-    monthlyApiLimit: 100,
+    monthlyApiLimit: 6000,
     overageUnitCost: 0.01
   },
   { name: "Company 3",
@@ -38,11 +38,39 @@ customers = [
     billingCyclesSincePayment: 0,
     email: "email",
     address: "123 Way",
-    monthlyApiLimit: 100,
+    monthlyApiLimit: 7000,
     overageUnitCost: 0.01
   }
 ]
+customerIds = []
 
 customers.each do |customer|
-  Customer.create!(customer)
+  createdCustomer = Customer.create!(customer)
+  customerIds.push(createdCustomer.id)
+end
+
+usageEntries1 = [
+  {
+    startDate: "2000-01-01",
+    endDate: "2000-02-01",
+    usage: 2000
+  },
+  {
+    startDate: "2000-02-01",
+    endDate: "2000-03-01",
+    usage: 4000
+  },
+  {
+    startDate: "2000-03-01",
+    endDate: "2000-04-01",
+    usage: 6000
+  },
+  ]
+
+customerIds.each do |customerId|
+  usageEntries1.each do |usage|
+    usage[:customer_id] = customerId
+    UsageEntry.create!(usage)
+  end
+
 end

@@ -21,12 +21,12 @@ class Api::CustomersController < ApplicationController
     if @customer.update(customer_params)
       render :show
     else
-      render json: @custoemr.errors.full_messages, status: 422
+      render json: @customer.errors.full_messages, status: 422
     end
   end
 
   def index
-    @customers = Customer.all
+    @customers = Customer.all.includes(:usage_entries)
   end
 
   private

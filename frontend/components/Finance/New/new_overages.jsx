@@ -1,16 +1,16 @@
 import React from 'react';
 
 class NewOverages extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.showAllCustomers();
   }
 
-  componentWillReceiveProps(nextProps) {
+  generateTable(name, overTF, overAmt, overCost, exception) {
 
+  }
+
+  tableHeader() {
+    return []
   }
 
   render() {
@@ -21,6 +21,7 @@ class NewOverages extends React.Component {
         {customers.map((customer, i) => (
           <li key={`customer-${i}`}>
             <h5> {customer ? customer.name : ""}</h5>
+            <h5> {customer ? customer.overTF : ""}</h5>
           </li>
         ))}
       </ul>
