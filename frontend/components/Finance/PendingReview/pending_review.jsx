@@ -1,22 +1,9 @@
 import React from 'react';
-import moment from 'moment';
 
-class NewOverages extends React.Component {
+class PendingReview extends React.Component {
   componentWillMount() {
+    //TODO figure out how to put multiple filters to get both pending sales and pending success
     this.props.showAllCustomers("New");
-  }
-
-  boolOver(bool) {
-    return bool ? "Yes" : "No"
-  }
-
-  monthsSinceCustomer(startDate) {
-    const today = moment(new Date(), "YYYY-MM-DD");
-    return Math.round(today.diff(moment(startDate), 'months', true) * 100) / 100;
-  }
-
-  boolException(startDate) {
-    return this.monthsSinceCustomer(startDate) < 3.0 ? "Yes" : "No";
   }
 
   tableHeader() {
@@ -79,4 +66,4 @@ class NewOverages extends React.Component {
   }
 }
 
-export default NewOverages;
+export default PendingReview;

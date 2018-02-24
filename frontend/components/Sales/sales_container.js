@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import NewOverages from './new_overages';
+import Sales from './sales';
 import values from 'lodash/values';
-import { showCustomer, showAllCustomers } from '../../../actions/customer_actions';
-import { updateBill } from '../../../actions/bill_actions';
+import { showCustomer, showAllCustomers } from '../../actions/customer_actions';
+import { updateBill } from '../../actions/bill_actions';
 
 const mapStateToProps = ({ session, customers }) => ({
   customers: values(customers.entities),
@@ -12,10 +12,10 @@ const mapStateToProps = ({ session, customers }) => ({
 const mapDispatchToProps = dispatch => ({
   showCustomer: (id) => dispatch(showCustomer(id)),
   showAllCustomers: billStatus => dispatch(showAllCustomers(billStatus)),
-  updateBill: (bill) => dispatch(updateBill(bill))
+  updateBill: (bill) => dispatch(updateBill(bill)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewOverages);
+)(Sales);
