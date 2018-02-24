@@ -15,7 +15,6 @@ const defaultState = Object.freeze({
 const customerReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let nextState;
-  console.log("CuSTOMER REducer", nextState);
   switch(action.type) {
     case RECEIVE_CUSTOMER:
       nextState = Object.assign({}, state);

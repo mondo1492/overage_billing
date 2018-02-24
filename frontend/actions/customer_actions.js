@@ -33,8 +33,8 @@ export const showCustomer = customer => dispatch => {
   );
 };
 
-export const showAllCustomers = () => dispatch => {
-  return APICustomerUtil.showAllCustomers().then(
+export const showAllCustomers = billStatus => dispatch => {
+  return APICustomerUtil.showAllCustomers(billStatus).then(
     response => dispatch(receiveCustomers(response)),
     errors => dispatch(receiveCustomerErrors(errors.responseJSON))
   );

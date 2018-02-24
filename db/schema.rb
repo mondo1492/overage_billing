@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223220923) do
+ActiveRecord::Schema.define(version: 20180223231110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: :cascade do |t|
+    t.integer "usage_entry_id", null: false
+    t.integer "customer_id", null: false
+    t.string "status"
+    t.float "amount"
+    t.boolean "paid_in_full"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_bills_on_customer_id"
+    t.index ["usage_entry_id"], name: "index_bills_on_usage_entry_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false

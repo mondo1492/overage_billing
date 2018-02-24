@@ -39,7 +39,9 @@ class Api::CustomersController < ApplicationController
           LIMIT 1
         )
     "
-    @customers = Customer.includes(:usage_entries).find_by_sql(sql)
+    customers = Customer.includes(:usage_entries, :bill).find_by_sql(sql)
+    @customers = customers.select { |customer| customer.usage_entries.last(1).first.bill.status == params[:status] }
+
   end
 
   private

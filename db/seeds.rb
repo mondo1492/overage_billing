@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Customer.destroy_all
+UsageEntry.destroy_all
+Bill.destroy_all
 
 customers = [
   { name: "Company 1",
@@ -27,7 +29,7 @@ customers = [
     billing_cycles_since_payment: 0,
     email: "email",
     address: "123 Way",
-    monthly_api_limit: 6000,
+    monthly_api_limit: 4000,
     overage_unit_cost: 0.01
   },
   { name: "Company 3",
@@ -38,7 +40,7 @@ customers = [
     billing_cycles_since_payment: 0,
     email: "email",
     address: "123 Way",
-    monthly_api_limit: 7000,
+    monthly_api_limit: 3000,
     overage_unit_cost: 0.01
   }
 ]
@@ -70,7 +72,9 @@ usageEntries1 = [
 customerIds.each do |customerId|
   usageEntries1.each do |usage|
     usage[:customer_id] = customerId
-    UsageEntry.create!(usage)
+    new_usage = UsageEntry.create!(usage)
+    bill = {status: 'New', amount: 250, customer_id: customerId, usage_entry_id: new_usage.id, paid_in_full: false}
+    Bill.create!(bill)
   end
 
 end

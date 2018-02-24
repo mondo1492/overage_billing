@@ -1,7 +1,8 @@
-export const showAllCustomers = () => (
+export const showAllCustomers = billStatus => (
   $.ajax({
     method: 'GET',
     url: 'api/customers',
+    data: { status: billStatus }
   })
 );
 
