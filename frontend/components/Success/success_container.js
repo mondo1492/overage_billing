@@ -3,6 +3,8 @@ import Success from './success';
 import values from 'lodash/values';
 import { showCustomer, showAllCustomers } from '../../actions/customer_actions';
 import { updateBill } from '../../actions/bill_actions';
+import { withRouter } from 'react-router';
+
 
 const mapStateToProps = ({ session, customers }) => ({
   customers: values(customers.entities),
@@ -15,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   updateBill: (bill) => dispatch(updateBill(bill)),
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Success);
+)(Success));

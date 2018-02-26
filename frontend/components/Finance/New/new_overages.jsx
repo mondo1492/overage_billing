@@ -67,7 +67,7 @@ class NewOverages extends React.Component {
             <h5> {customer ? customer.previous_month_usge : ""}</h5>
             <h5> {customer ? customer.over_amt : ""}</h5>
             <h5> {customer ? customer.overage_unit_cost : ""}</h5>
-            <h5> {customer ? customer.over_cost : ""}</h5>
+            <h5> {customer ? Math.round(customer.over_cost * 100) / 100 : ""}</h5>
             <h5> {customer ? this.boolException(customer.start_date) : ""}</h5>
             <h5> {customer ? this.monthsSinceCustomer(customer.start_date) : ""}</h5>
             <span>{customer ? this.buttonAction(customer.start_date, customer.bill_id) : ""}</span>

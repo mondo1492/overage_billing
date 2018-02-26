@@ -6,10 +6,6 @@ class Customer < ApplicationRecord
     self.usage_entries.last(1).first
   end
 
-  def self.with_status(status)
-
-  end
-
   def previous_month_usge
     @previous_month_usge ||= previous_month_entry.usage
   end
@@ -32,5 +28,22 @@ class Customer < ApplicationRecord
 
   def bill_id
     previous_month_entry.bill.id
+  end
+
+  def explanation
+    previous_month_entry.bill.explanation
+  end
+
+  def writeoff_approver
+    previous_month_entry.bill.writeoff_approver
+  end
+
+  def convert(date)
+    date.strftime("%m/%d/%Y") 
+  end
+
+  def billing_period
+    pme = previous_month_entry
+    "#{convert(pme.start_date)} - #{convert(pme.end_date)}"
   end
 end

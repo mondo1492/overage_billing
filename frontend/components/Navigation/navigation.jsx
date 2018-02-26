@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Navigation extends React.Component {
   navItems() {
     return [
-      {text: 'Finance', link: '/finance'},
+      {text: 'Finance', link: '/finance/new'},
       {text: 'Success', link: '/success'},
       {text: 'Sales', link: '/sales'}
       ];

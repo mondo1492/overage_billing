@@ -39,6 +39,12 @@ class Api::CustomersController < ApplicationController
           LIMIT 1
         )
     "
+    # customers = Customer.includes(:usage_entries, :bills).all
+    # @customers = customers.select do |customer|
+    #   customer.usage_entries.last(1).first.bill.status == params[:status] &&
+    #   customer.usage_entries.last(1).first.usage < customer.monthly_api_limit
+    # end
+
     customers = Customer.includes(:usage_entries, :bill).find_by_sql(sql)
     @customers = customers.select { |customer| customer.usage_entries.last(1).first.bill.status == params[:status] }
 

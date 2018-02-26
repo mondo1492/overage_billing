@@ -11,6 +11,7 @@ class WriteOffs extends React.Component {
         <h5>Customer Name</h5>
         <h5>Billing Period</h5>
         <h5>Amount Written Off</h5>
+        <h5>Written Off By</h5>
         <h5>Explanation</h5>
       </li>
     );
@@ -25,9 +26,10 @@ class WriteOffs extends React.Component {
         {customers.map((customer, i) => (
           <li key={`customer-${i}`}>
             <h5> {customer ? customer.name : ""}</h5>
-            <h5>ADD LOGIC</h5>
+            <h5> {customer ? customer.billing_period : ""}</h5>
             <h5> {customer ? customer.over_cost : ""}</h5>
-            <h5>ADD EXPLANATION</h5>
+            <h5> {customer ? customer.writeoff_approver : ""}</h5>
+            <h5> {customer ? customer.explanation : ""}</h5>
           </li>
         ))}
       </ul>

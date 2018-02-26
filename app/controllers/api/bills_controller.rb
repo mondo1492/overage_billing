@@ -12,7 +12,7 @@ class Api::BillsController < ApplicationController
 
   def bill_params
     params.require(:bill).permit(
-      :usage_entry_id, :customer_id, :status, :amount, :paid_in_full
+      :usage_entry_id, :customer_id, :status, :amount, :paid_in_full, :explanation, :writeoff_approver
     )
   end
 end
