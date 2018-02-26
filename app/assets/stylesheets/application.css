@@ -26,3 +26,5 @@
 
  @import './components/finance.scss';
  @import './components/modal.scss';
+ @import './components/tables.scss';
+ @import './components/navigation.scss';

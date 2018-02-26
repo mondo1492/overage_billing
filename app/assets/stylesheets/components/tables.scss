@@ -1,0 +1,32 @@
+table, td, th {
+  border: 1px solid lightgrey;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: center;
+}
+
+th {
+  font-size: 16px;
+  background-color: #49b882;
+  color: white;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+td {
+  height: 30px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

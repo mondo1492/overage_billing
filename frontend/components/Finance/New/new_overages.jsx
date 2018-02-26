@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { commaFormat, round } from '../../../util/helper';
 
 class NewOverages extends React.Component {
   componentWillMount() {
@@ -21,18 +22,18 @@ class NewOverages extends React.Component {
 
   tableHeader() {
     return (
-      <li id='overage-header' key='overage-header'>
-        <h5>Customer Name</h5>
-        <h5>Over API Limit?</h5>
-        <h5>Monthly Limit</h5>
-        <h5>Previous Month Usage</h5>
-        <h5>Overage Amount</h5>
-        <h5>Overage Unit Cost</h5>
-        <h5>Total Cost</h5>
-        <h5>New Customer Exception?</h5>
-        <h5>Months As Customer</h5>
-        <h5>Action</h5>
-      </li>
+      <tr id='overage-header' key='overage-header'>
+        <th>Customer Name</th>
+        <th>Over API Limit?</th>
+        <th>Monthly Limit</th>
+        <th>Previous Month Usage</th>
+        <th>Overage Amount</th>
+        <th>Overage Unit Cost</th>
+        <th>Total Cost</th>
+        <th>New Customer Exception?</th>
+        <th>Months As Customer</th>
+        <th>Action</th>
+      </tr>
     );
   }
 
@@ -57,23 +58,25 @@ class NewOverages extends React.Component {
     const customers = this.props.customers ? this.props.customers : [];
     return(
       <div className="new-overages-container">
-        <ul className='customer-ul'>
-        {this.tableHeader()}
-        {customers.map((customer, i) => (
-          <li key={`customer-${i}`}>
-            <h5> {customer ? customer.name : ""}</h5>
-            <h5> {customer ? this.boolOver(customer.over_bool) : ""}</h5>
-            <h5> {customer ? customer.monthly_api_limit : ""}</h5>
-            <h5> {customer ? customer.previous_month_usge : ""}</h5>
-            <h5> {customer ? customer.over_amt : ""}</h5>
-            <h5> {customer ? customer.overage_unit_cost : ""}</h5>
-            <h5> {customer ? Math.round(customer.over_cost * 100) / 100 : ""}</h5>
-            <h5> {customer ? this.boolException(customer.start_date) : ""}</h5>
-            <h5> {customer ? this.monthsSinceCustomer(customer.start_date) : ""}</h5>
-            <span>{customer ? this.buttonAction(customer.start_date, customer.bill_id) : ""}</span>
-          </li>
-        ))}
-      </ul>
+        <table>
+          <tbody>
+          {this.tableHeader()}
+          {customers.map((customer, i) => (
+            <tr key={`customer-${i}`}>
+              <td> {customer ? customer.name : ""}</td>
+              <td> {customer ? this.boolOver(customer.over_bool) : ""}</td>
+              <td> {customer ? commaFormat(customer.monthly_api_limit) : ""}</td>
+              <td> {customer ? commaFormat(customer.previous_month_usge) : ""}</td>
+              <td> {customer ? commaFormat(customer.over_amt) : ""}</td>
+              <td> {customer ? customer.overage_unit_cost : ""}</td>
+              <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
+              <td> {customer ? this.boolException(customer.start_date) : ""}</td>
+              <td> {customer ? this.monthsSinceCustomer(customer.start_date) : ""}</td>
+              <td>{customer ? this.buttonAction(customer.start_date, customer.bill_id) : ""}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       </div>
     );
   }

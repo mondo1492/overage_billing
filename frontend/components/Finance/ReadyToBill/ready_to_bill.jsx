@@ -1,4 +1,5 @@
 import React from 'react';
+import { commaFormat, round } from '../../../util/helper';
 
 class ReadyToBill extends React.Component {
   componentWillMount() {
@@ -30,8 +31,8 @@ class ReadyToBill extends React.Component {
         {customers.map((customer, i) => (
           <li key={`customer-${i}`}>
             <h5> {customer ? customer.name : ""}</h5>
-            <h5>ADD LOGIC</h5>
-            <h5> {customer ? customer.over_cost : ""}</h5>
+            <h5> {customer ? customer.billing_period : ""}</h5>
+            <h5> ${customer ? commaFormat(round(customer.over_cost)) : ""}</h5>
             <button onClick={() => this.handleAction("Delivered", customer.bill_id)}>Deliver Bill</button>
           </li>
         ))}

@@ -4,7 +4,7 @@ class Front extends React.Component {
   render() {
     return(
       <div>
-        <h1>Overage Billing App</h1>
+        <h1>Internal Overage Portal</h1>
       </div>
     );
   }

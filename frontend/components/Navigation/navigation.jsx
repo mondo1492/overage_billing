@@ -1,26 +1,59 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class Navigation extends React.Component {
-  navItems() {
-    return [
-      {text: 'Finance', link: '/finance/new'},
-      {text: 'Success', link: '/success'},
-      {text: 'Sales', link: '/sales'}
-      ];
+  constructor(props) {
+    super(props);
+    this.state = {
+      finance: "nav-unselected",
+      success: "nav-unselected",
+      sales: "nav-unselected"
+    }
+    this.highlight = this.highlight.bind(this);
+    console.log("NAV PROPS", this.props);
+  }
+
+  componentDidMount() {
+    const newState = {}
+    Object.keys(this.state).forEach( key => {
+      if (this.props.location.pathname.includes(key)) {
+        newState[key] = "nav-selected";
+      }
+    });
+    this.setState(newState);
+  }
+
+  highlight(selected) {
+    const newState = {}
+    Object.keys(this.state).forEach( key => {
+      if (key === selected) {
+        newState[key] = "nav-selected";
+      } else {
+        newState[key] = "nav-unselected";
+      }
+    });
+    this.setState(newState);
   }
 
   render() {
     return(
       <div>
         <div className="finance-nav-container">
-          <ul>
-          {this.navItems().map((navItem, i) => (
-            <li key={`navItem-${i}`}>
-              <Link to={navItem.link}>{navItem.text}</Link>
-            </li>
-          ))}
-        </ul>
+          <Link to='/finance/new'>
+            <div onClick={()=>this.highlight('finance')} className={this.state.finance}>
+              Finance
+            </div>
+          </Link>
+          <Link to='/success'>
+            <div onClick={()=>this.highlight('success')} className={this.state.success}>
+              Success
+            </div>
+          </Link>
+          <Link to='/sales'>
+            <div onClick={()=>this.highlight('sales')} className={this.state.sales}>
+              Sales
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -29,4 +62,4 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+export default withRouter(Navigation);

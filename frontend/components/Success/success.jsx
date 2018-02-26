@@ -1,22 +1,26 @@
 import React from 'react';
 import Modal from 'react-modal';
 import moment from 'moment';
+import { commaFormat, round } from '../../util/helper';
 
 class Success extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modalOpen: false,
-      explanation: ""
+      explanation: "",
+      workingId: null
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.update = this.update.bind(this);
     this.toggleButton = this.toggleButton.bind(this);
   }
+
   componentWillMount() {
     Modal.setAppElement('body');
   }
+
   componentDidMount() {
     this.props.showAllCustomers("Pending_Success");
   }
@@ -38,29 +42,30 @@ class Success extends React.Component {
   buttonAction(startDate, id) {
     return (
       <div>
-        <button onClick={()=> this.openModal()}>Reject Bill</button>
+        <button onClick={()=> this.openModal(id)}>Reject Bill</button>
         <button onClick={() => this.handleAction("Pending_Sales", id)}>Approve Bill</button>
       </div>
     )
   }
 
-  openModal() {
-    this.setState({ modalOpen: true });
+  openModal(id) {
+    this.setState({ modalOpen: true, workingId: id });
   }
 
   handleAction(status, id) {
-    this.props.updateBill({
+    this.setState({modalOpen: false, workingId: id},
+    () => {this.props.updateBill({
       bill: {
         status: status,
-        id: id,
+        id: this.state.workingId,
         explanation: this.state.explanation,
         writeoff_approver: "CSM"
       }
-    }).then(()=> this.props.showAllCustomers("Pending_Success"));
+    }).then(()=> this.props.showAllCustomers("Pending_Success"))});
   }
 
   closeModal() {
-    this.setState({modalOpen: false});
+    this.setState({modalOpen: false, workingId: null, explanation: ""});
   }
 
   toggleButton(id) {
@@ -76,10 +81,11 @@ class Success extends React.Component {
         explanation: e.currentTarget.value
      });
    };
-  }
+ }
 
   render() {
     const customers = this.props.customers ? this.props.customers : [];
+    const buttonAction = this.buttonAction.bind(this);
     return(
       <div>
         <div className="new-overages-container">
@@ -89,12 +95,12 @@ class Success extends React.Component {
             <div key={`customer-${i}`}>
               <li>
                 <h5> {customer ? customer.name : ""}</h5>
-                <h5> {customer ? customer.monthly_api_limit : ""}</h5>
-                <h5> {customer ? customer.previous_month_usge : ""}</h5>
-                <h5> {customer ? customer.over_amt : ""}</h5>
+                <h5> {customer ? commaFormat(customer.monthly_api_limit) : ""}</h5>
+                <h5> {customer ? commaFormat(customer.previous_month_usge) : ""}</h5>
+                <h5> {customer ? commaFormat(customer.over_amt) : ""}</h5>
                 <h5> {customer ? customer.overage_unit_cost : ""}</h5>
-                <h5> {customer ? customer.over_cost : ""}</h5>
-                <span>{customer ? this.buttonAction(customer.start_date, customer.bill_id) : ""}</span>
+                <h5> ${customer ? commaFormat(round(customer.over_cost)) : ""}</h5>
+                <span>{customer ? buttonAction(customer.start_date, customer.bill_id) : ""}</span>
               </li>
               <Modal
                 isOpen={this.state.modalOpen}
@@ -108,6 +114,7 @@ class Success extends React.Component {
                   <div>
                     <h2>WriteOff Explanation</h2>
                       <textarea
+                        autoFocus
                         value={this.state.explanation}
                         onChange={this.update()}
                         placeholder="Please Write Explanation"
@@ -119,7 +126,8 @@ class Success extends React.Component {
             </div>
           ))}
         </ul>
-        </div>
+      </div>
+
       </div>
 
     );
