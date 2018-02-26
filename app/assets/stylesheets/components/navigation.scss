@@ -1,7 +1,40 @@
 .nav-selected {
-  color: red;
+  color: green;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: 1px solid lightgrey;
+  border-bottom: none;
+  margin: -1px;
 }
 
 .nav-unselected {
   color: green;
+  opacity: 0.5;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-unselected:hover {
+  color: green;
+  opacity: 1;
+}
+
+.navigation {
+  height: 30px;
+  width: 100%;
+  padding-top: 10px;
+
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  div {
+    text-decoration: none;
+    padding: 0px 15px;
+  }
 }

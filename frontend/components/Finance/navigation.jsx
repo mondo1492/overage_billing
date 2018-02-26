@@ -51,10 +51,10 @@ class FinanceNav extends React.Component {
   render() {
     return(
       <div>
-        <div className="finance-nav-container">
+        <div className="navigation">
           {this.navItems().map((navItem, i) => (
-            <Link to={navItem.link} key={`navItem-${i}`}>
-              <div onClick={()=>this.highlight(navItem.stateName)} className={this.state[navItem.stateName]}>
+            <Link to={navItem.link} key={`navItem-${i}`} className={this.state[navItem.stateName]}>
+              <div onClick={()=>this.highlight(navItem.stateName)}>
                 {navItem.text}
               </div>
             </Link>

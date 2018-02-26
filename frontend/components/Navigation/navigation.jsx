@@ -38,19 +38,19 @@ class Navigation extends React.Component {
   render() {
     return(
       <div>
-        <div className="finance-nav-container">
-          <Link to='/finance/new'>
-            <div onClick={()=>this.highlight('finance')} className={this.state.finance}>
+        <div className="navigation">
+          <Link to='/finance/new' className={this.state.finance}>
+            <div onClick={()=>this.highlight('finance')}>
               Finance
             </div>
           </Link>
-          <Link to='/success'>
-            <div onClick={()=>this.highlight('success')} className={this.state.success}>
+          <Link to='/success' className={this.state.success}>
+            <div onClick={()=>this.highlight('success')}>
               Success
             </div>
           </Link>
-          <Link to='/sales'>
-            <div onClick={()=>this.highlight('sales')} className={this.state.sales}>
+          <Link to='/sales' className={this.state.sales}>
+            <div onClick={()=>this.highlight('sales')}>
               Sales
             </div>
           </Link>
