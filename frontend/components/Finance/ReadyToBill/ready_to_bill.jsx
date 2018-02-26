@@ -1,4 +1,5 @@
 import React from 'react';
+import Empty from '../../empty';
 import { commaFormat, round } from '../../../util/helper';
 
 class ReadyToBill extends React.Component {
@@ -22,8 +23,8 @@ class ReadyToBill extends React.Component {
       .then(()=> this.props.showAllCustomers("Final"));
   }
 
-  render() {
-    const customers = this.props.customers ? this.props.customers : [];
+  renderTable() {
+    const customers = this.props.customers;
     return(
       <div className="container">
         <div className="ready-to-bill-container">
@@ -36,13 +37,29 @@ class ReadyToBill extends React.Component {
                   <td> {customer ? customer.billing_period : ""}</td>
                   <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
                   <td>
-                    <button onClick={() => this.handleAction("Delivered", customer.bill_id)}>Deliver Bill</button>
+                    <button
+                      className='approve-button table-button'
+                      onClick={() => this.handleAction("SENT", customer.bill_id)}>
+                      Deliver Bill
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      </div>
+    )
+  }
+
+  render() {
+    const hasItems = this.props.customers.length > 0;
+    return(
+      <div>
+        { hasItems ?
+          this.renderTable() :
+          <Empty subject="customer bills ready to review"/>
+        }
       </div>
     );
   }

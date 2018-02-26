@@ -7,7 +7,7 @@ import Sales from './Sales/sales_container';
 import Navigation from './Navigation/navigation';
 
 const App = () => (
-  <div>
+  <div className='master-container'>
     <Front/>
     <Navigation/>
     <Switch>

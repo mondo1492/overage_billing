@@ -120,6 +120,39 @@ customers = [
     monthly_api_limit: 1000000,
     overage_unit_cost: 0.01
   },
+  { name: "Customer11",
+    tier: "Business",
+    annual_payment: 100000,
+    start_date: "2018-02-01",
+    outstanding_balance: 0,
+    billing_cycles_since_payment: 0,
+    email: "ap@customer11.com",
+    address: "11 appian way, Redmond , Washington",
+    monthly_api_limit: 1000000,
+    overage_unit_cost: 0.01
+  },
+  { name: "Customer12",
+    tier: "Business",
+    annual_payment: 100000,
+    start_date: "2018-02-01",
+    outstanding_balance: 0,
+    billing_cycles_since_payment: 0,
+    email: "ap@customer12.com",
+    address: "12 appian way, Redmond , Washington",
+    monthly_api_limit: 1000000,
+    overage_unit_cost: 0.01
+  },
+  { name: "Customer13",
+    tier: "Business",
+    annual_payment: 100000,
+    start_date: "2018-02-01",
+    outstanding_balance: 0,
+    billing_cycles_since_payment: 0,
+    email: "ap@customer13.com",
+    address: "13 appian way, Redmond , Washington",
+    monthly_api_limit: 1000000,
+    overage_unit_cost: 0.01
+  },
 ]
 customerIds = []
 

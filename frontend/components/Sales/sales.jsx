@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import moment from 'moment';
+import Empty from '../empty';
 import { round, commaFormat } from '../../util/helper';
 
 class Sales extends React.Component {
@@ -46,8 +47,16 @@ class Sales extends React.Component {
   buttonAction(id) {
     return (
       <div>
-        <button onClick={()=> this.openModal(id)}>Reject Bill</button>
-        <button onClick={() => this.handleAction("Final", id)}>Approve Bill</button>
+        <button
+          className='reject-button table-button'
+          onClick={()=> this.openModal(id)}>
+          Reject Bill
+        </button>
+        <button
+          className='approve-button table-button'
+          onClick={() => this.handleAction("Final", id)}>
+          Approve Bill
+        </button>
       </div>
     )
   }
@@ -55,7 +64,11 @@ class Sales extends React.Component {
   toggleButton(id) {
     const disabled = this.state.explanation.length === 0 ? true : false;
     return (
-      <button disabled={disabled} onClick={() => this.handleAction("WriteOff")}>Reject Bill</button>
+      <button
+        disabled={disabled}
+        className='reject-button table-button'
+        onClick={() => this.handleAction("WriteOff")}>
+        Reject Bill</button>
     )
   }
 
@@ -85,8 +98,8 @@ class Sales extends React.Component {
     .then(()=> this.setState({modalOpen: false}));
   }
 
-  render() {
-    const customers = this.props.customers ? this.props.customers : [];
+  renderTable() {
+    const customers = this.props.customers;
     const buttonAction = this.buttonAction.bind(this);
     return(
       <div className="container">
@@ -130,7 +143,18 @@ class Sales extends React.Component {
           </table>
         </div>
       </div>
+    );
+  }
 
+  render() {
+    const hasItems = this.props.customers.length > 0;
+    return(
+      <div>
+        { hasItems ?
+          this.renderTable() :
+          <Empty subject="new overages to review"/>
+        }
+      </div>
     );
   }
 }

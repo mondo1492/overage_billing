@@ -1,4 +1,5 @@
 import React from 'react';
+import Empty from '../../empty';
 import { commaFormat, round } from '../../../util/helper';
 
 class WriteOffs extends React.Component {
@@ -18,8 +19,8 @@ class WriteOffs extends React.Component {
     );
   }
 
-  render() {
-    const customers = this.props.customers ? this.props.customers : [];
+  renderTable() {
+    const customers = this.props.customers;
     return(
       <div className="container">
         <div className="writeoff-container">
@@ -40,6 +41,18 @@ class WriteOffs extends React.Component {
         </div>
       </div>
 
+    );
+  }
+
+  render() {
+    const hasItems = this.props.customers.length > 0;
+    return(
+      <div>
+        { hasItems ?
+          this.renderTable() :
+          <Empty subject="writeoffs to view"/>
+        }
+      </div>
     );
   }
 }

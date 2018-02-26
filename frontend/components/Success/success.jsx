@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import moment from 'moment';
+import Empty from '../empty';
 import { commaFormat, round } from '../../util/helper';
 
 class Success extends React.Component {
@@ -42,8 +43,16 @@ class Success extends React.Component {
   buttonAction(id) {
     return (
       <div>
-        <button onClick={() => this.openModal(id)}>Reject Bill</button>
-        <button onClick={() => this.handleAction("Pending_Sales", id)}>Approve Bill</button>
+        <button
+          className='reject-button table-button'
+          onClick={() => this.openModal(id)}>
+          Reject Bill
+        </button>
+        <button
+          className='approve-button table-button'
+          onClick={() => this.handleAction("Pending_Sales", id)}>
+          Approve Bill
+        </button>
       </div>
     )
   }
@@ -72,8 +81,14 @@ class Success extends React.Component {
 
   toggleButton(id) {
     const disabled = this.state.explanation.length === 0 ? true : false;
+    const idname = disabled ? 'disabled' : 'writeoff-button';
     return (
-      <button disabled={disabled} onClick={() => this.handleAction("WriteOff")}>Reject Bill</button>
+      <button
+        id={idname}
+        disabled={disabled}
+        onClick={() => this.handleAction("WriteOff")}>
+        Writeoff this Bill
+      </button>
     )
   }
 
@@ -85,8 +100,8 @@ class Success extends React.Component {
    };
  }
 
-  render() {
-    const customers = this.props.customers ? this.props.customers : [];
+  renderTable() {
+    const customers = this.props.customers;
     const buttonAction = this.buttonAction.bind(this);
     return(
       <div className="container">
@@ -110,10 +125,10 @@ class Success extends React.Component {
                     overlayClassName="modal-overlay"
                     toggleButton={this.toggleButton}
                     contentLabel="modal">
-                    <div>
+                    <div className='modal-content'>
                       <button className="X" onClick={this.closeModal}>&times;</button>
                       <div>
-                        <h2>WriteOff Explanation</h2>
+                        <h2>Writeoff Explanation</h2>
                           <textarea
                             autoFocus
                             value={this.state.explanation}
@@ -121,14 +136,27 @@ class Success extends React.Component {
                             placeholder="Please Write Explanation"
                           />
                       </div>
+                      {this.toggleButton(this.state.workingId)}
                     </div>
-                  {this.toggleButton(this.state.workingId)}
+
                   </Modal>
                   </tr>
               ))}
             </tbody>
           </table>
         </div>
+      </div>
+    );
+  }
+
+  render() {
+    const hasItems = this.props.customers.length > 0;
+    return(
+      <div>
+        { hasItems ?
+          this.renderTable() :
+          <Empty subject="new overages to review"/>
+        }
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Empty from '../../empty';
 import { commaFormat, round } from '../../../util/helper';
 
 class Billed extends React.Component {
@@ -17,8 +18,8 @@ class Billed extends React.Component {
     );
   }
 
-  render() {
-    const customers = this.props.customers ? this.props.customers : [];
+  renderTable() {
+    const customers = this.props.customers;
     return(
       <div className="container">
         <div className="billed-container">
@@ -36,6 +37,18 @@ class Billed extends React.Component {
             </tbody>
           </table>
         </div>
+      </div>
+    );
+  }
+
+  render() {
+    const hasItems = this.props.customers.length > 0;
+    return(
+      <div>
+        { hasItems ?
+          this.renderTable() :
+          <Empty subject="customers billed"/>
+        }
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React from 'react';
 import NewOverages from './New/new_overages_container';
-// import PendingReview from './PendingReview/pending_review_container';
 import WriteOffs from './WriteOffs/writeoffs_container';
 import ReadyToBill from './ReadyToBill/ready_to_bill_container';
 import Billed from './Billed/billed_container';
@@ -50,7 +49,7 @@ class FinanceNav extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className='left-border'>
         <div className="navigation">
           {this.navItems().map((navItem, i) => (
             <Link to={navItem.link} key={`navItem-${i}`} className={this.state[navItem.stateName]}>

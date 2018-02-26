@@ -24,6 +24,36 @@
    z-index: 50;
  }
 
+ .master-container {
+   padding: 10px;
+ }
+
+ .table-button {
+   padding: 5px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   margin-left: 20px;
+   margin-right: 20px;
+   cursor: pointer;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   font-size: 12px;
+   min-width: 80px;
+ }
+
+  .table-button:hover {
+    opacity: 0.5;
+  }
+
+ .approve-button {
+   background: #49b882;
+ }
+
+ .reject-button {
+   background: #FF4C4C;
+ }
+
  @import './components/finance.scss';
  @import './components/modal.scss';
  @import './components/tables.scss';
