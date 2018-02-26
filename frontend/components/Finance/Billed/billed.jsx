@@ -8,30 +8,34 @@ class Billed extends React.Component {
 
   tableHeader() {
     return (
-      <li id='overage-header' key='overage-header'>
-        <h5>Customer Name</h5>
-        <h5>Billing Period</h5>
-        <h5>Bill Amount</h5>
-        <h5>Payment</h5>
-      </li>
+      <tr>
+        <th>Customer Name</th>
+        <th>Billing Period</th>
+        <th>Bill Amount</th>
+        <th>Payment</th>
+      </tr>
     );
   }
 
   render() {
     const customers = this.props.customers ? this.props.customers : [];
     return(
-      <div className="new-overages-container">
-        <ul className='customer-ul'>
-        {this.tableHeader()}
-        {customers.map((customer, i) => (
-          <li key={`customer-${i}`}>
-            <h5> {customer ? customer.name : ""}</h5>
-            <h5> {customer ? customer.billing_period : ""}</h5>
-            <h5> ${customer ? commaFormat(round(customer.over_cost)) : ""}</h5>
-            <h5>Pending...</h5>
-          </li>
-        ))}
-      </ul>
+      <div className="container">
+        <div className="billed-container">
+          <table>
+            <tbody>
+              {this.tableHeader()}
+              {customers.map((customer, i) => (
+                <tr key={`customer-${i}`}>
+                  <td> {customer ? customer.name : ""}</td>
+                  <td> {customer ? customer.billing_period : ""}</td>
+                  <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
+                  <td>Pending...</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

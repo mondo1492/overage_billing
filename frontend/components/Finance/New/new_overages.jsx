@@ -22,7 +22,7 @@ class NewOverages extends React.Component {
 
   tableHeader() {
     return (
-      <tr id='overage-header' key='overage-header'>
+      <tr>
         <th>Customer Name</th>
         <th>Over API Limit?</th>
         <th>Monthly Limit</th>
@@ -57,26 +57,28 @@ class NewOverages extends React.Component {
   render() {
     const customers = this.props.customers ? this.props.customers : [];
     return(
-      <div className="new-overages-container">
-        <table>
-          <tbody>
-          {this.tableHeader()}
-          {customers.map((customer, i) => (
-            <tr key={`customer-${i}`}>
-              <td> {customer ? customer.name : ""}</td>
-              <td> {customer ? this.boolOver(customer.over_bool) : ""}</td>
-              <td> {customer ? commaFormat(customer.monthly_api_limit) : ""}</td>
-              <td> {customer ? commaFormat(customer.previous_month_usge) : ""}</td>
-              <td> {customer ? commaFormat(customer.over_amt) : ""}</td>
-              <td> {customer ? customer.overage_unit_cost : ""}</td>
-              <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
-              <td> {customer ? this.boolException(customer.start_date) : ""}</td>
-              <td> {customer ? this.monthsSinceCustomer(customer.start_date) : ""}</td>
-              <td>{customer ? this.buttonAction(customer.start_date, customer.bill_id) : ""}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="container">
+        <div className="new-overages-container">
+          <table>
+            <tbody>
+            {this.tableHeader()}
+            {customers.map((customer, i) => (
+              <tr key={`customer-${i}`}>
+                <td> {customer ? customer.name : ""}</td>
+                <td> {customer ? this.boolOver(customer.over_bool) : ""}</td>
+                <td> {customer ? commaFormat(customer.monthly_api_limit) : ""}</td>
+                <td> {customer ? commaFormat(customer.previous_month_usge) : ""}</td>
+                <td> {customer ? commaFormat(customer.over_amt) : ""}</td>
+                <td> {customer ? customer.overage_unit_cost : ""}</td>
+                <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
+                <td> {customer ? this.boolException(customer.start_date) : ""}</td>
+                <td> {customer ? this.monthsSinceCustomer(customer.start_date) : ""}</td>
+                <td>{customer ? this.buttonAction(customer.start_date, customer.bill_id) : ""}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
       </div>
     );
   }

@@ -8,12 +8,12 @@ class ReadyToBill extends React.Component {
 
   tableHeader() {
     return (
-      <li id='overage-header' key='overage-header'>
-        <h5>Customer Name</h5>
-        <h5>Billing Period</h5>
-        <h5>Bill Amount</h5>
-        <h5>Action</h5>
-      </li>
+      <tr>
+        <th>Customer Name</th>
+        <th>Billing Period</th>
+        <th>Bill Amount</th>
+        <th>Action</th>
+      </tr>
     );
   }
 
@@ -25,18 +25,24 @@ class ReadyToBill extends React.Component {
   render() {
     const customers = this.props.customers ? this.props.customers : [];
     return(
-      <div className="new-overages-container">
-        <ul className='customer-ul'>
-        {this.tableHeader()}
-        {customers.map((customer, i) => (
-          <li key={`customer-${i}`}>
-            <h5> {customer ? customer.name : ""}</h5>
-            <h5> {customer ? customer.billing_period : ""}</h5>
-            <h5> ${customer ? commaFormat(round(customer.over_cost)) : ""}</h5>
-            <button onClick={() => this.handleAction("Delivered", customer.bill_id)}>Deliver Bill</button>
-          </li>
-        ))}
-      </ul>
+      <div className="container">
+        <div className="ready-to-bill-container">
+          <table>
+            <tbody>
+              {this.tableHeader()}
+              {customers.map((customer, i) => (
+                <tr key={`customer-${i}`}>
+                  <td> {customer ? customer.name : ""}</td>
+                  <td> {customer ? customer.billing_period : ""}</td>
+                  <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
+                  <td>
+                    <button onClick={() => this.handleAction("Delivered", customer.bill_id)}>Deliver Bill</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

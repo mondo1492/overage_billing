@@ -27,15 +27,15 @@ class Success extends React.Component {
 
   tableHeader() {
     return (
-      <li id='overage-header' key='overage-header'>
-        <h5>Customer Name</h5>
-        <h5>Monthly Limit</h5>
-        <h5>Previous Month Usage</h5>
-        <h5>Overage Amount</h5>
-        <h5>Overage Unit Cost</h5>
-        <h5>Bill Total</h5>
-        <h5>Action</h5>
-      </li>
+      <tr>
+        <th>Customer Name</th>
+        <th>Monthly Limit</th>
+        <th>Previous Month Usage</th>
+        <th>Overage Amount</th>
+        <th>Overage Unit Cost</th>
+        <th>Bill Total</th>
+        <th>Action</th>
+      </tr>
     );
   }
 
@@ -87,49 +87,47 @@ class Success extends React.Component {
     const customers = this.props.customers ? this.props.customers : [];
     const buttonAction = this.buttonAction.bind(this);
     return(
-      <div>
-        <div className="new-overages-container">
-          <ul className='customer-ul'>
-          {this.tableHeader()}
-          {customers.map((customer, i) => (
-            <div key={`customer-${i}`}>
-              <li>
-                <h5> {customer ? customer.name : ""}</h5>
-                <h5> {customer ? commaFormat(customer.monthly_api_limit) : ""}</h5>
-                <h5> {customer ? commaFormat(customer.previous_month_usge) : ""}</h5>
-                <h5> {customer ? commaFormat(customer.over_amt) : ""}</h5>
-                <h5> {customer ? customer.overage_unit_cost : ""}</h5>
-                <h5> ${customer ? commaFormat(round(customer.over_cost)) : ""}</h5>
-                <span>{customer ? buttonAction(customer.start_date, customer.bill_id) : ""}</span>
-              </li>
-              <Modal
-                isOpen={this.state.modalOpen}
-                onRequestClose={this.closeModal}
-                className="modal"
-                overlayClassName="modal-overlay"
-                toggleButton={this.toggleButton}
-                contentLabel="modal">
-                <div>
-                  <button className="X" onClick={this.closeModal}>&times;</button>
-                  <div>
-                    <h2>WriteOff Explanation</h2>
-                      <textarea
-                        autoFocus
-                        value={this.state.explanation}
-                        onChange={this.update()}
-                        placeholder="Please Write Explanation"
-                      />
-                  </div>
-                </div>
-              {this.toggleButton(customer? customer.bill_id: "")}
-              </Modal>
-            </div>
-          ))}
-        </ul>
+      <div className="container">
+        <div className="success-container">
+          <table>
+            <tbody>
+              {this.tableHeader()}
+              {customers.map((customer, i) => (
+                <tr key={`customer-${i}`}>
+                    <td> {customer ? customer.name : ""}</td>
+                    <td> {customer ? commaFormat(customer.monthly_api_limit) : ""}</td>
+                    <td> {customer ? commaFormat(customer.previous_month_usge) : ""}</td>
+                    <td> {customer ? commaFormat(customer.over_amt) : ""}</td>
+                    <td> {customer ? customer.overage_unit_cost : ""}</td>
+                    <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
+                    <td>{customer ? buttonAction(customer.start_date, customer.bill_id) : ""}</td>
+                  <Modal
+                    isOpen={this.state.modalOpen}
+                    onRequestClose={this.closeModal}
+                    className="modal"
+                    overlayClassName="modal-overlay"
+                    toggleButton={this.toggleButton}
+                    contentLabel="modal">
+                    <div>
+                      <button className="X" onClick={this.closeModal}>&times;</button>
+                      <div>
+                        <h2>WriteOff Explanation</h2>
+                          <textarea
+                            autoFocus
+                            value={this.state.explanation}
+                            onChange={this.update()}
+                            placeholder="Please Write Explanation"
+                          />
+                      </div>
+                    </div>
+                  {this.toggleButton(customer? customer.bill_id: "")}
+                  </Modal>
+                  </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      </div>
-
     );
   }
 }

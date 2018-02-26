@@ -8,15 +8,25 @@
   border: 1px solid lightgrey;
   border-bottom: none;
   margin: -1px;
+  div {
+    padding: 5px 15px;
+  }
 }
 
 .nav-unselected {
   color: green;
   opacity: 0.5;
   text-decoration: none;
+  display: inline-block;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 30px;
+  div {
+    padding: 5px 15px;
+  }
+
 }
 
 .nav-unselected:hover {
@@ -33,8 +43,4 @@
   display: flex;
   flex-direction: row;
   list-style-type: none;
-  div {
-    text-decoration: none;
-    padding: 0px 15px;
-  }
 }
