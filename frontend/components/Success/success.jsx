@@ -39,10 +39,10 @@ class Success extends React.Component {
     );
   }
 
-  buttonAction(startDate, id) {
+  buttonAction(id) {
     return (
       <div>
-        <button onClick={()=> this.openModal(id)}>Reject Bill</button>
+        <button onClick={() => this.openModal(id)}>Reject Bill</button>
         <button onClick={() => this.handleAction("Pending_Sales", id)}>Approve Bill</button>
       </div>
     )
@@ -53,15 +53,17 @@ class Success extends React.Component {
   }
 
   handleAction(status, id) {
-    this.setState({modalOpen: false, workingId: id},
-    () => {this.props.updateBill({
+    const useId = id ? id : this.state.workingId;
+    this.props.updateBill({
       bill: {
         status: status,
-        id: this.state.workingId,
+        id: useId,
         explanation: this.state.explanation,
         writeoff_approver: "CSM"
       }
-    }).then(()=> this.props.showAllCustomers("Pending_Success"))});
+    })
+    .then(()=> this.props.showAllCustomers("Pending_Success"))
+    .then(()=> this.setState({modalOpen: false}));
   }
 
   closeModal() {
@@ -71,7 +73,7 @@ class Success extends React.Component {
   toggleButton(id) {
     const disabled = this.state.explanation.length === 0 ? true : false;
     return (
-      <button disabled={disabled} onClick={() => this.handleAction("WriteOff", id)}>Reject Bill</button>
+      <button disabled={disabled} onClick={() => this.handleAction("WriteOff")}>Reject Bill</button>
     )
   }
 
@@ -100,7 +102,7 @@ class Success extends React.Component {
                     <td> {customer ? commaFormat(customer.over_amt) : ""}</td>
                     <td> {customer ? customer.overage_unit_cost : ""}</td>
                     <td> ${customer ? commaFormat(round(customer.over_cost)) : ""}</td>
-                    <td>{customer ? buttonAction(customer.start_date, customer.bill_id) : ""}</td>
+                    <td>{customer ? buttonAction(customer.bill_id) : ""}</td>
                   <Modal
                     isOpen={this.state.modalOpen}
                     onRequestClose={this.closeModal}
@@ -120,7 +122,7 @@ class Success extends React.Component {
                           />
                       </div>
                     </div>
-                  {this.toggleButton(customer? customer.bill_id: "")}
+                  {this.toggleButton(this.state.workingId)}
                   </Modal>
                   </tr>
               ))}

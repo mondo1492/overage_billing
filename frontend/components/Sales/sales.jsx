@@ -43,7 +43,7 @@ class Sales extends React.Component {
     );
   }
 
-  buttonAction(startDate, id) {
+  buttonAction(id) {
     return (
       <div>
         <button onClick={()=> this.openModal(id)}>Reject Bill</button>
@@ -55,7 +55,7 @@ class Sales extends React.Component {
   toggleButton(id) {
     const disabled = this.state.explanation.length === 0 ? true : false;
     return (
-      <button disabled={disabled} onClick={() => this.handleAction("WriteOff", id)}>Reject Bill</button>
+      <button disabled={disabled} onClick={() => this.handleAction("WriteOff")}>Reject Bill</button>
     )
   }
 
@@ -72,15 +72,17 @@ class Sales extends React.Component {
   }
 
   handleAction(status, id) {
-    this.setState({modalOpen: false, workingId: id},
-    () => {this.props.updateBill({
+    const useId = id ? id : this.state.workingId;
+    this.props.updateBill({
       bill: {
         status: status,
-        id: id,
+        id: useId,
         explanation: this.state.explanation,
         writeoff_approver: "Sales"
       }
-    }).then(()=> this.props.showAllCustomers("Pending_Sales"))});
+    })
+    .then(()=> this.props.showAllCustomers("Pending_Sales"))
+    .then(()=> this.setState({modalOpen: false}));
   }
 
   render() {
@@ -100,7 +102,7 @@ class Sales extends React.Component {
                   <td> {customer ? commaFormat(customer.over_amt) : ""}</td>
                   <td> {customer ? commaFormat(customer.overage_unit_cost) : ""}</td>
                   <td> {customer ? round(customer.over_cost) : ""}</td>
-                  <td>{customer ? buttonAction(customer.start_date, customer.bill_id) : ""}</td>
+                  <td>{customer ? buttonAction(customer.bill_id) : ""}</td>
                   <Modal
                     isOpen={this.state.modalOpen}
                     onRequestClose={this.closeModal}
@@ -120,7 +122,7 @@ class Sales extends React.Component {
                           />
                       </div>
                     </div>
-                  {this.toggleButton(customer? customer.bill_id: "")}
+                  {this.toggleButton(this.state.workingId)}
                   </Modal>
                 </tr>
               ))}
