@@ -19,23 +19,10 @@ export const updateBill = bill => dispatch => {
     errors => dispatch(receiveBillErrors(errors.responseJSON))
   );
 };
-//
+
 export const sendBill = bill => dispatch => {
   return APIBillUtil.sendBill(bill).then(
     response => dispatch(receiveBill(response)),
     errors => dispatch(receiveBillErrors(errors.responseJSON))
   );
 };
-// export const showBill = id => dispatch => {
-//   return APIBillUtil.showBill(id).then(
-//     response => dispatch(receiveBill(response)),
-//     errors => dispatch(receiveBillErrors(errors.responseJSON))
-//   );
-// };
-//
-// export const showAllBills = billStatus => dispatch => {
-//   return APIBillUtil.showAllBills(billStatus).then(
-//     response => dispatch(receiveBills(response)),
-//     errors => dispatch(receiveBillErrors(errors.responseJSON))
-//   );
-// };

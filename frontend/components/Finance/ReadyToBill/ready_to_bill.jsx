@@ -18,10 +18,13 @@ class ReadyToBill extends React.Component {
     );
   }
 
-  handleAction(status, id) {
+  handleAction(status, id, name, billPeriod, overCost) {
     this.props.updateBill({bill: {status: status, id: id}})
-      .then(()=> this.props.sendBill({bill: {status: status, id: id, myname:"Aaron Mondshine"}}))
       .then(()=> this.props.showAllCustomers("Final"));
+      // Commented out bill action below because of issues sending Json object to given endpoint
+      // Would include name, billPeriod, overCost
+      // .then(()=> this.props.sendBill({bill: {status: status, id: id, myname:"Aaron Mondshine"}}))
+
   }
 
   renderTable() {

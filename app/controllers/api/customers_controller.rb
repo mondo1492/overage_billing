@@ -27,10 +27,9 @@ class Api::CustomersController < ApplicationController
   end
 
   def index
-    # @customers = Customer.includes(:usage_entries).all
-    # chose to do below to avoid getting all customers, even those who dont' have overage
     sql = "
-    SELECT * FROM customers as c
+    SELECT *
+    FROM customers as c
     WHERE c.monthly_api_limit < (
           SELECT usage FROM usage_entries as u
           JOIN customers ON customers.id = customer_id
@@ -39,11 +38,6 @@ class Api::CustomersController < ApplicationController
           LIMIT 1
         )
     "
-    # customers = Customer.includes(:usage_entries, :bills).all
-    # @customers = customers.select do |customer|
-    #   customer.usage_entries.last(1).first.bill.status == params[:status] &&
-    #   customer.usage_entries.last(1).first.usage < customer.monthly_api_limit
-    # end
 
     customers = Customer.includes(:usage_entries, :bill).find_by_sql(sql)
     @customers = customers.select { |customer| customer.usage_entries.last(1).first.bill.status == params[:status] }

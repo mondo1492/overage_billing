@@ -10,7 +10,6 @@ class Navigation extends React.Component {
       sales: "nav-unselected"
     }
     this.highlight = this.highlight.bind(this);
-    console.log("NAV PROPS", this.props);
   }
 
   componentDidMount() {
