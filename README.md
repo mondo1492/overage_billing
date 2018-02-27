@@ -1,6 +1,4 @@
 # Overage Billing App - Segment
-
- is an Airbnb clone with a island-theme twist.  It is a full-stack, single-page, web application built using Ruby on Rails, a PostGreSQL database, React/Redux, Google Maps and Cloudinary.
 This app was designed and built according to a real problem Segment encountered (albeit most of the complexity has been stripped away to make this a reasonably short project).
 ## The Problem:
   * Segment is a SaaS company, and some of our customers are designated as “Business Tier” customers. They have signed up for our service based on estimated usage of the product (in API calls), and they usually pay us annually up front. But some of our customers use more than their allotted API calls, so we need a way for our teams to bill them for the additional usage. For example, a customer’s estimated usage in their contract is 100,000 API/Month, their negotiated rate for overages is $0.01/API, and they used 150,000 API in November. Then we need to bill the overage of 50,000 * $0.01 = $500 for November.
@@ -90,4 +88,4 @@ Currently, there is no sorting done by last updated entries in the database. Thi
 As described above, this would be implemented in a production application, but for simplicity and time sake, was not implemented here.
 
 #### Deployment
-I would have preferred to deploy this application with heroku, to have the ability to view this app from any machine but have some bug finding to do as to why heroku deployments are failing. Suspect it has something to do with new React update. 
+I would have preferred to deploy this application with heroku, to have the ability to view this app from any machine but have some bug finding to do as to why heroku deployments are failing. Suspect it has something to do with new React update.
