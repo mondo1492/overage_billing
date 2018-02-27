@@ -25,9 +25,17 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ww": "webpack --w"
+    "ww": "webpack --w",
+    "postinstall": "webpack"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
   },
   "repository": {
     "type": "git",
