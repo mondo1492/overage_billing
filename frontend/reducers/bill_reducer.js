@@ -5,7 +5,6 @@ import {
   RECEIVE_BILL_ERRORS
 } from '../actions/bill_actions';
 
-
 const defaultState = Object.freeze({
   bills: {},
   errors: []
@@ -19,9 +18,6 @@ const billReducer = (state = defaultState, action) => {
       nextState = Object.assign({}, state);
       nextState.bills[action.bill.id] = action.bill;
       return nextState;
-    // case RECEIVE_BILLS:
-    //   nextState = Object.assign({}, state, { bills: action.customers });
-    //   return nextState;
     case RECEIVE_BILL_ERRORS:
       let errors = action.errors;
       nextState = Object.assign({}, state, { errors });

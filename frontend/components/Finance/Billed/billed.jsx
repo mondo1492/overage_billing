@@ -4,7 +4,7 @@ import { commaFormat, round } from '../../../util/helper';
 
 class Billed extends React.Component {
   componentWillMount() {
-    this.props.showAllCustomers("Delivered");
+    this.props.showAllCustomers("SENT");
   }
 
   tableHeader() {

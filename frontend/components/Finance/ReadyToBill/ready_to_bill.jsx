@@ -20,6 +20,7 @@ class ReadyToBill extends React.Component {
 
   handleAction(status, id) {
     this.props.updateBill({bill: {status: status, id: id}})
+      .then(()=> this.props.sendBill({bill: {status: status, id: id, myname:"Aaron Mondshine"}}))
       .then(()=> this.props.showAllCustomers("Final"));
   }
 
@@ -39,7 +40,8 @@ class ReadyToBill extends React.Component {
                   <td>
                     <button
                       className='approve-button table-button'
-                      onClick={() => this.handleAction("SENT", customer.bill_id)}>
+                      onClick={() => this.handleAction("SENT", customer.bill_id,
+                      customer.name, customer.billing_period, customer.over_cost)}>
                       Deliver Bill
                     </button>
                   </td>

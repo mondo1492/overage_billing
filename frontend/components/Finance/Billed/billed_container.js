@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Billed from './billed';
 import values from 'lodash/values';
 import { showAllCustomers } from '../../../actions/customer_actions';
+import { sendBill } from '../../../actions/bill_actions';
 
 const mapStateToProps = ({ session, customers }) => ({
   customers: values(customers.entities),
@@ -9,7 +10,8 @@ const mapStateToProps = ({ session, customers }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  showAllCustomers: billStatus => dispatch(showAllCustomers(billStatus))
+  showAllCustomers: billStatus => dispatch(showAllCustomers(billStatus)),
+  sendBill: bill => dispatch(sendBill(billStatus))
 });
 
 export default connect(
