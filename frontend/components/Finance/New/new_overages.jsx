@@ -99,7 +99,6 @@ class NewOverages extends React.Component {
   }
 
   render() {
-    console.log(this.props.customers);
     const hasItems = this.props.customers.length > 0;
     return(
       <div>
