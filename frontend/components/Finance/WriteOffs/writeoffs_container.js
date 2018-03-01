@@ -4,7 +4,7 @@ import values from 'lodash/values';
 import { showAllCustomers } from '../../../actions/customer_actions';
 
 const mapStateToProps = ({ session, customers }) => ({
-  customers: values(customers.entities).filter(customer => customer.bill_status === 'WriteOff'),
+  customers: values(customers.entities),
   errors: customers.errors
 });
 

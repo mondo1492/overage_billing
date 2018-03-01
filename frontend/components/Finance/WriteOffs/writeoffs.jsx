@@ -27,7 +27,9 @@ class WriteOffs extends React.Component {
           <table>
             <tbody>
               {this.tableHeader()}
-              {customers.map((customer, i) => (
+              {customers
+                .filter(customer => customer.bill_status === "WriteOff")
+                .map((customer, i) => (
                 <tr key={`customer-${i}`}>
                   <td> {customer ? customer.name : ""}</td>
                   <td> {customer ? customer.billing_period : ""}</td>
