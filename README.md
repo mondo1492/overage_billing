@@ -57,7 +57,7 @@ This app was designed and built according to a real problem Segment encountered 
       * Writeoffs - where finance could view bills that have been written off, by whom, and why.  
         * Made assumption that Finance would not be able to override a writeoff.
       * Ready To Bill - where Finance would actually send the bill to the customer
-      * Billed - where finance could see the (hypothetical) status of whether a bill has been paid. Functionality could be added to mark bill as 'closed'.
+      * Billed - where finance could see the (hypothetical) status of whether a bill has been paid. Functionality could be added to mark bill as 'closed' as well as adding billing amount to a customer's outstanding balance.
     4. Implementing Sales and Success
       * Because Sales and Success have the same process for writing off or approving bills, their functionality is identical.  
         * TODO: Dry up code by reusing duplicate code.
@@ -82,10 +82,12 @@ On the backend, I did not want to retrieve all the usage entry data for every cu
 During my 3 day course of development, I discovered many more implementations that can deliver more functionality and a better experience listed below:
 
 #### Sort By Last Updated
-Currently, there is no sorting done by last updated entries in the database. This would improve the experience as oldest entries should be handled first.
+Currently, there is no sorting done by last updated entries in the database. This would improve the experience as oldest entries should be handled first. Even better could be the ability to sort by specific criteria.
 
 #### Employee Table and Authentication
 As described above, this would be implemented in a production application, but for simplicity and time sake, was not implemented here.
 
 #### Deployment
-I would have preferred to deploy this application with heroku, to have the ability to view this app from any machine but have some bug finding to do as to why heroku deployments are failing. Suspect it has something to do with new React update.
+After deploying this app, I encountered a bug where there was a delay in displaying data. After trying to solve the problem a few different ways, I realized that the problems was with the redux store.  
+I believed serving up only customers with specific bill status's (filtering out on the backend) would be ideal in that it would reduce the amount of data served to the frontend but being a single-page-app, the better approach for speed would be to get all customers, filter by status on the frontend, and then make state changes on the frontend without having to wait for server.
+To fix: For each component, make initial API call to get all customer data (componentWillMount), filter that data by bill status, add those customers to the component state.  Every time a change is made, update local state in addition to a API call for to "PATCH" any customer changes.
