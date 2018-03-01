@@ -39,8 +39,8 @@ class Api::CustomersController < ApplicationController
         )
     "
 
-    @customers = Customer.includes(:usage_entries, :bill).find_by_sql(sql)
-    # @customers = customers.select { |customer| customer.usage_entries.last(1).first.bill.status == params[:status] }
+    customers = Customer.includes(:usage_entries, :bill).find_by_sql(sql)
+    @customers = customers.select { |customer| customer.usage_entries.last(1).first.bill.status == params[:status] }
 
   end
 

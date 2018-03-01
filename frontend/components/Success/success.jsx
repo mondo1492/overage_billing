@@ -101,7 +101,7 @@ class Success extends React.Component {
  }
 
   renderTable() {
-    const customers = this.props.customers.filter(customer => customer.bill_status === "Pending_Success");
+    const customers = this.props.customers;
     const buttonAction = this.buttonAction.bind(this);
     return(
       <div className="container">

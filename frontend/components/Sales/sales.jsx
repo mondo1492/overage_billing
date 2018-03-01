@@ -63,12 +63,14 @@ class Sales extends React.Component {
 
   toggleButton(id) {
     const disabled = this.state.explanation.length === 0 ? true : false;
+    const idname = disabled ? 'disabled' : 'writeoff-button';
     return (
       <button
+        id={idname}
         disabled={disabled}
-        className='reject-button table-button'
         onClick={() => this.handleAction("WriteOff")}>
-        Reject Bill</button>
+        Writeoff this Bill
+      </button>
     )
   }
 
@@ -99,7 +101,7 @@ class Sales extends React.Component {
   }
 
   renderTable() {
-    const customers = this.props.customers.filter(customer => customer.bill_status === "Pending_Sales");
+    const customers = this.props.customers;
     const buttonAction = this.buttonAction.bind(this);
     return(
       <div className="container">
@@ -123,7 +125,7 @@ class Sales extends React.Component {
                     overlayClassName="modal-overlay"
                     toggleButton={this.toggleButton}
                     contentLabel="modal">
-                    <div>
+                    <div className='modal-content'>
                       <button className="X" onClick={this.closeModal}>&times;</button>
                       <div>
                         <h2>WriteOff Explanation</h2>

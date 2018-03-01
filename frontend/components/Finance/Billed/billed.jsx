@@ -19,7 +19,7 @@ class Billed extends React.Component {
   }
 
   renderTable() {
-    const customers = this.props.customers.filter(customer => customer.bill_status === "SENT");
+    const customers = this.props.customers;
     return(
       <div className="container">
         <div className="billed-container">

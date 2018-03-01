@@ -70,7 +70,7 @@ class NewOverages extends React.Component {
   }
 
   renderTable() {
-    const customers = this.props.customers.filter(customer => customer.bill_status === "New");
+    const customers = this.props.customers;
     return(
       <div className="container">
         <div className="new-overages-container">
