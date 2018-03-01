@@ -70,16 +70,14 @@ class NewOverages extends React.Component {
   }
 
   renderTable() {
-    const customers = this.props.customers;
+    const customers = this.props.customers.filter(customer => customer.bill_status === "New");
     return(
       <div className="container">
         <div className="new-overages-container">
           <table>
             <tbody>
             {this.tableHeader()}
-            {customers
-              .filter(customer => customer.bill_status === "New")
-              .map((customer, i) => (
+            {customers.map((customer, i) => (
               <tr key={`customer-${i}`}>
                 <td> {customer ? customer.name : ""}</td>
                 <td> {customer ? this.boolOver(customer.over_bool) : ""}</td>

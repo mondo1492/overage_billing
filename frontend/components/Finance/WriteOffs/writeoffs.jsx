@@ -20,16 +20,14 @@ class WriteOffs extends React.Component {
   }
 
   renderTable() {
-    const customers = this.props.customers;
+    const customers = this.props.customers.filter(customer => customer.bill_status === "WriteOff");
     return(
       <div className="container">
         <div className="writeoff-container">
           <table>
             <tbody>
               {this.tableHeader()}
-              {customers
-                .filter(customer => customer.bill_status === "WriteOff")
-                .map((customer, i) => (
+              {customers.map((customer, i) => (
                 <tr key={`customer-${i}`}>
                   <td> {customer ? customer.name : ""}</td>
                   <td> {customer ? customer.billing_period : ""}</td>

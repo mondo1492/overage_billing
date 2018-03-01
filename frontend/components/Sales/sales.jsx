@@ -99,7 +99,7 @@ class Sales extends React.Component {
   }
 
   renderTable() {
-    const customers = this.props.customers;
+    const customers = this.props.customers.filter(customer => customer.bill_status === "Pending_Sales");
     const buttonAction = this.buttonAction.bind(this);
     return(
       <div className="container">
@@ -107,9 +107,7 @@ class Sales extends React.Component {
           <table>
             <tbody>
               {this.tableHeader()}
-              {customers
-                .filter(customer => customer.bill_status === "Pending_Sales")
-                .map((customer, i) => (
+              {customers.map((customer, i) => (
                 <tr key={`customer-${i}`}>
                   <td> {customer ? customer.name : ""}</td>
                   <td> {customer ? commaFormat(customer.monthly_api_limit) : ""}</td>
