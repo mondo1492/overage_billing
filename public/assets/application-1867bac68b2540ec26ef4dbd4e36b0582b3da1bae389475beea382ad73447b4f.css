@@ -1,0 +1,268 @@
+/* line 2, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/finance.scss */
+.customer-ul #overage-header {
+  font-weight: bold;
+}
+/* line 5, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/finance.scss */
+.customer-ul li {
+  display: flex;
+  flex-direction: row;
+}
+/* line 9, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/finance.scss */
+.customer-ul li * {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  width: 75px;
+  padding: 5px 15px;
+}
+
+/* line 21, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/finance.scss */
+.container {
+  padding: 10px 20px;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 20px;
+  margin-left: -1px;
+}
+
+/* line 31, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/finance.scss */
+.left-border {
+  border-left: 1px solid lightgrey;
+  margin-left: -1px;
+}
+/* line 1, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 10000;
+}
+
+/* line 11, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.modal {
+  background-color: white;
+  border: 1px solid lightgrey;
+  outline: none;
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  width: 500px;
+  max-width: 100%;
+  border-radius: 0px;
+  padding: 20px;
+  z-index: 11;
+}
+
+/* line 26, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.X {
+  cursor: pointer;
+  outline: none;
+  color: black;
+  border: none;
+  background: none;
+  position: absolute;
+  font-size: 40px;
+  font-weight: lighter;
+}
+
+/* line 37, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.modal-content {
+  padding: 30px;
+}
+/* line 40, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.modal-content .X {
+  color: black;
+  right: 20px;
+  top: -10px;
+}
+/* line 46, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.modal-content div h2 {
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+/* line 51, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+.modal-content div textarea {
+  width: 350px;
+  height: 100px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+/* line 60, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+#writeoff-button {
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: orange;
+  font-size: 20px;
+  margin: 0px;
+}
+
+/* line 71, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/modal.scss */
+#disabled {
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: lightgrey;
+  font-size: 20px;
+  color: grey;
+}
+/* line 1, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/navigation.scss */
+.nav-selected {
+  color: green;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: 1px solid lightgrey;
+  border-bottom: none;
+  margin: -1px;
+}
+/* line 11, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/navigation.scss */
+.nav-selected div {
+  padding: 5px 15px;
+}
+
+/* line 16, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/navigation.scss */
+.nav-unselected {
+  color: green;
+  opacity: 0.5;
+  text-decoration: none;
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+/* line 26, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/navigation.scss */
+.nav-unselected div {
+  padding: 5px 15px;
+}
+
+/* line 32, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/navigation.scss */
+.nav-unselected:hover {
+  color: green;
+  opacity: 1;
+}
+
+/* line 37, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/navigation.scss */
+.navigation {
+  height: 30px;
+  width: 100%;
+  padding-top: 10px;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+/* line 1, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/tables.scss */
+table, td, th {
+  border: 1px solid lightgrey;
+}
+
+/* line 6, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/tables.scss */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* line 11, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/tables.scss */
+td, th {
+  text-align: center;
+}
+
+/* line 15, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/tables.scss */
+th {
+  font-size: 14px;
+  background-color: #49b882;
+  color: white;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* line 24, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/tables.scss */
+td {
+  height: 30px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+/* line 30, /Users/aaronmondshine/Desktop/overage_billing/app/assets/stylesheets/components/tables.scss */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+ * {
+   font-family: sans-serif;
+   font-weight: lighter;
+   outline: none;
+   margin: 0;
+   padding: 0;
+   position: relative;
+   z-index: 50;
+ }
+
+ .master-container {
+   padding: 10px;
+ }
+
+ .table-button {
+   padding: 5px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   margin-left: 20px;
+   margin-right: 20px;
+   cursor: pointer;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   font-size: 12px;
+   min-width: 80px;
+ }
+
+  .table-button:hover {
+    opacity: 0.5;
+  }
+
+ .approve-button {
+   background: #49b882;
+ }
+
+ .reject-button {
+   background: #FF4C4C;
+ }
+
+ @import './components/finance.scss';
+ @import './components/modal.scss';
+ @import './components/tables.scss';
+ @import './components/navigation.scss';
