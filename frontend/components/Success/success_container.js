@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 
 
 const mapStateToProps = ({ session, customers }) => ({
-  customers: values(customers.entities),
+  customers: values(customers.entities).filter(customer => customer.bill_status === 'Pending_Success'),
   errors: customers.errors
 });
 

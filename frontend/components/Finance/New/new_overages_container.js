@@ -5,7 +5,7 @@ import { showCustomer, showAllCustomers } from '../../../actions/customer_action
 import { updateBill } from '../../../actions/bill_actions';
 
 const mapStateToProps = ({ session, customers }) => ({
-  customers: values(customers.entities),
+  customers: values(customers.entities).filter(customer => customer.bill_status === 'New'),
   errors: customers.errors
 });
 
